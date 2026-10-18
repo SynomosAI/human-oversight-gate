@@ -1,0 +1,64 @@
+# human-oversight-gate — 完整文本
+
+本文件为 llms.txt 标准的「完整版」，供长上下文模型一次性读取本仓库的完整说明。
+
+## 这是什么
+
+`human-oversight-gate`（人类监督闸门）是一个 Agent Skill 发布包，把人机协同治理闭环里的「人审断节点」做成可执行工具，落地 EU AI Act 第 14 条有效人类监督。控制塔 `ai-governance` 给出 PASS / CONDITIONAL / BLOCK；本技能让 CONDITIONAL 的人审步骤可运行——不是「流程里随便有个人」，而是可被审计接受、有证据、可 override 的监督。
+
+一句话：人类保留最终问责权，AI 只提供可治理性。
+
+## 何时使用
+
+- `ai-governance` 闸门返回 CONDITIONAL（需人签核）。
+- 任何高风险 / 受监管 / 对外 AI 动作适用 HITL。
+- 对自主 Agent 的运行做周期性 HOTL 监控。
+
+## 五项核心能力
+
+1. 监督模式选择器：HITL（人在环，每个重大动作前批准）/ HOTL（人在上，监控可叫停）/ HIC（人在控，设定并撤销限额）。
+2. 决策捕获：Accept / Override（人给替代 + 原因码）/ Block；记录时间戳、主管 ID、原因码、AI 原建议与置信度。
+3. 具名主管签核：委托 `identity-verify` 核验主管能力 / 职权，未签核拒绝执行；生物识别（Annex III 1(a)）须两名自然人核验（Art.14(5)）。
+4. Override 率 KPI：≈0% 橡皮图章告警，>20% 模型失效告警；指标必须公开。
+5. 证据发射：决策记录写入 `audit-trail-keeper`（不可变）。
+
+## 工作流
+
+1. 接收 `ai-governance` 闸门决策与上下文。
+2. 按动作类别选监督模式。
+3. 呈证据包（`ai-grader` 评分、轨迹摘录、合规对标图）。
+4. 捕获人审决策（Accept/Override/Block）并签核。
+5. 更新 override 率 KPI。
+6. 证据写入 `audit-trail-keeper`，放行或扣住动作。
+
+## 衔接技能
+
+- 主管身份 / 职权：`identity-verify`
+- 不可变日志：`audit-trail-keeper`
+- 闸门前置：`ai-governance`
+- 行为基线：`ai-grader`
+
+## 合规对标
+
+EU AI Act Art.14(1)–(5)；ISO/IEC 42001:2023 A.6.2.6；NIST AI RMF MANAGE-2.4；FDA 21 CFR Part 11。
+
+## 快速开始
+
+```bash
+git clone https://github.com/SynomosAI/human-oversight-gate.git
+cd human-oversight-gate
+cat SKILL.md
+```
+
+## 触发词
+
+人审断 / 人类监督 / HITL / HOTL / override / CONDITIONAL 闸门 / 高风险动作 / 受监管 AI / 电子签核。
+
+## 许可与权利
+
+MIT 许可（见 LICENSE.md）。版权：© 2026 注册老炮@MedXpert。
+
+## 链接
+
+- 仓库: https://github.com/SynomosAI/human-oversight-gate
+- 生态全景: https://github.com/SynomosAI/synomosai-skills
