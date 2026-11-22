@@ -1,0 +1,23 @@
+{
+  "algorithm": "sha256(sorted relpath + NUL + file sha256, per line)",
+  "history": [
+    {
+      "root_digest": "b577ee9fb77c3fce128987e90b0c151fa729ae4aa7668fb8f04ab8364b758eaa",
+      "sequence": 1
+    }
+  ],
+  "root_digest": "b577ee9fb77c3fce128987e90b0c151fa729ae4aa7668fb8f04ab8364b758eaa",
+  "schema_version": 2,
+  "sequence": 1,
+  "skill_count": 1,
+  "skills": [
+    {
+      "declared_name": "human-oversight-gate",
+      "digest": "812317d7df305504cab2f174170e505faeeb5147b440e5493c7ae432b953ce6c",
+      "file_count": 1,
+      "has_description": true,
+      "path": "."
+    }
+  ],
+  "validated_against": []
+}
